@@ -17,10 +17,7 @@ class UserController extends Controller {
         password:Joi.string().required(),
       },
     };
-    const error = u.validate(ctx, validate);
-    if (error) {
-      throw u.ohno.common.param_not_validate(error);
-    }
+    u.validate(ctx, validate);
     await ctx.service.user.create(ctx.request.body);
     ctx.status = 201;
   }
